@@ -3,6 +3,8 @@ package br.com.gim.blog.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import br.com.gim.blog.model.entity.Usuario;
@@ -16,25 +18,24 @@ public class UsuarioDAO {
 
 	
 	public List<Usuario> lista() {
-		
 		return manager.createQuery("from Usuario", Usuario.class).getResultList();
 	}
 
 
-
+	@TransactionAttribute(TransactionAttributeType.MANDATORY)
 	public void salvar(Usuario usuario) {
-		manager.getTransaction().begin();
 		
 		if(!usuarioExiste(usuario)){
 			manager.persist(usuario);
 		}else{
 			manager.merge(usuario);
 		}
-		
-		
-		manager.getTransaction().commit();
 	}
 
+	@TransactionAttribute(TransactionAttributeType.MANDATORY)
+	public void remove(Usuario usuario) {
+		manager.remove(usuario);
+	}
 
 
 	private boolean usuarioExiste(Usuario usuario) {
@@ -42,13 +43,6 @@ public class UsuarioDAO {
 	}
 
 
-
-	public void remove(Usuario usuario) {
-		manager.getTransaction().begin();
-		manager.remove(usuario);
-		manager.getTransaction().commit();
-		
-	}
 
 
 

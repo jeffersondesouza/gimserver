@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.google.gson.Gson;
 
@@ -15,19 +18,26 @@ import br.com.gim.blog.model.SocialPost;
 @Entity
 public class Comentario implements SocialPost{
 
+	public Comentario() {
+		this.dataPublicacao = Calendar.getInstance();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Lob
 	private String texto;
 	
-	@ManyToOne
-	private Usuario autor;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataPublicacao;
 
-	public Comentario() {
-		this.dataPublicacao = Calendar.getInstance();
-	}
+	@ManyToOne
+	private Usuario autor;
+
+	@ManyToOne
+	private Artigo artigo;
+	
 
 	public Long getId() {
 		return id;
@@ -55,6 +65,16 @@ public class Comentario implements SocialPost{
 
 	public Calendar getDataPublicacao() {
 		return dataPublicacao;
+	}
+
+	
+	
+	public Artigo getArtigo() {
+		return artigo;
+	}
+
+	public void setArtigo(Artigo artigo) {
+		this.artigo = artigo;
 	}
 
 	public String toJSON() {

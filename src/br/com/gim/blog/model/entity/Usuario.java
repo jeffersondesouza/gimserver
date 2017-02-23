@@ -58,6 +58,10 @@ public class Usuario {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public List<Artigo> getArtigos() {
 		return artigos;
 	}

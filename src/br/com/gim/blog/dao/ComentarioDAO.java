@@ -21,9 +21,16 @@ public class ComentarioDAO {
 	}
 
 	public void salva(Comentario comentario) {
-		manager.getTransaction().begin();
-		manager.persist(comentario);	
-		manager.getTransaction().commit();
+		if(comentarioExiste(comentario)){
+			manager.merge(comentario);
+			return;
+		}
+			manager.persist(comentario);	
+		
+	}
+
+	private boolean comentarioExiste(Comentario comentario) {
+		return comentario.getId()!=null;
 	}
 
 }

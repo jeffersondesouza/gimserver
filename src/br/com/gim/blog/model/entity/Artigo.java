@@ -44,9 +44,9 @@ public class Artigo {
 	private Integer curtidas;
 	private Integer descurtidas;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Comentario> comentarios = new ArrayList<>();
-	
+//	@OneToMany(cascade=CascadeType.ALL)
+//	private List<Comentario> comentarios = new ArrayList<>();
+//	
 	@Column(name="artigo_publico")
 	private boolean isPublico;
 
@@ -103,13 +103,13 @@ public class Artigo {
 		return "Artigo [texto=" + texto + "]";
 	}
 	
-	public List<Comentario> getComentarios() {
-		return Collections.unmodifiableList(comentarios);
-	}
-	
-	public void addComentario(Comentario comentario) {
-		this.comentarios.add(comentario);		
-	}
+//	public List<Comentario> getComentarios() {
+//		return Collections.unmodifiableList(comentarios);
+//	}
+//	
+//	public void addComentario(Comentario comentario) {
+//		this.comentarios.add(comentario);		
+//	}
 	
 	@Override
 	public int hashCode() {
