@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.gim.blog.dao.ArtigoDAO;
-import br.com.gim.blog.model.entity.Artigo;
+import br.com.gim.blogserver.dao.ArtigoDAO;
+import br.com.gim.blogserver.model.entity.Artigo;
 
 public class ArtigoDaoTest {
 

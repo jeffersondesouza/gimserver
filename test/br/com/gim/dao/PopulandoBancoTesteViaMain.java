@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.gim.blog.dao.ArtigoDAO;
-import br.com.gim.blog.model.entity.Artigo;
+import br.com.gim.blogserver.dao.ArtigoDAO;
+import br.com.gim.blogserver.model.entity.Artigo;
 
 public class PopulandoBancoTesteViaMain {
 
